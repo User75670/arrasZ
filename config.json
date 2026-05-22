@@ -16,7 +16,7 @@
   "MODE": "tdm",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
-  "MAP": "custom",
+  "MAP": "default",
   "ROOM_SETUP": {
     "custom": [
      [ "bas1", "roid", "roid", "norm", "norm"],
@@ -24,6 +24,12 @@
      [ "roid", "roid", "roid", "norm", "norm"],
      [ "norm", "norm", "norm", "nest", "nest"],
      [ "norm", "norm", "norm", "nest", "nest"]
+    ],
+    "default": [
+      [ "roid", "norm", "norm", "roid" ],
+      [ "norm", "nest", "roid", "norm" ],
+      [ "norm", "roid", "nest", "norm" ],
+      [ "roid", "norm", "norm", "roid" ]
     ]
   },
   "DAMAGE_CONSTANT": 0.6,

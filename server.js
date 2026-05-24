@@ -33,25 +33,31 @@ Array.prototype.remove = index => {
 global.fps = "Unknown";
 var roomSpeed = c.gameSpeed;
 
-const map = c.MAPS[c.MAP]["map"];
-if (map.length < 1) {
-    throw new Error('invalid map length');
-}
-const mapHeight = c.MAPS[c.MAP]["height"];
-const mapWidth = c.MAPS[c.MAP]["width"];
-const ygrid = map.length;
-const xgrid = map[0].length;
-for (let i = 1; i < map.length; i++) {
-    if (map[i].length !== xgrid) {
-        throw new Error('xgrid length mismatch');
-    }
+const map = c.MAPS[c.MAP];
+if (!map) throw new Error('nonexistent map');
+if (!map.setup) throw new Error('nonexistent setup');
+if (!Array.isArray(map.setup)) throw new Error('invalid setup');
+if (map.setup.length <= 0) throw new Error('invalid setup length');
+if (!Array.isArray(map.setup[0])) throw new Error('invalid setup row (first row)');
+
+const setup = map.setup;
+const mapHeight = map.height;
+const mapWidth = map.width;
+const ygrid = setup.length;
+const xgrid = setup[0].length;
+
+if (typeof mapHeight !== 'number' || typeof mapWidth !== 'number') throw new Error('NaN dimensions');
+if (mapHeight <= 0 || mapWidth <= 0 || !Number.isFinite(mapWidth) || !Number.isFinite(mapHeight)) throw new Error('invalid dimension lengths');
+for (let i = 1; i < setup.length; i++) {
+    if (!Array.isArray(setup[i])) throw new Error('invalid setup row');
+    if (setup[i].length !== xgrid) throw new Error('xgrid length mismatch');
 }
 const room = {
     lastCycle: undefined,
     cycleSpeed: 1000 / roomSpeed / 30,
     width: mapWidth,
     height: mapHeight,
-    setup: map,
+    setup: setup,
     xgrid: xgrid, 
     ygrid: ygrid,
     gameMode: c.MODE,   
@@ -2931,7 +2937,7 @@ const sockets = (() => {
                             'R',
                             room.width,
                             room.height,
-                            JSON.stringify(map), 
+                            JSON.stringify(setup), 
                             JSON.stringify(util.serverStartTime),
                             roomSpeed
                         );

@@ -143,6 +143,7 @@ const room = {
         if (room.isInRoom(location)) {
             let a = Math.floor(location.y * room.ygrid / room.height);
             let b = Math.floor(location.x * room.xgrid / room.width);
+            if (a === room.ygrid || b === room.xgrid || a < 0 || b < 0) return false;
             return type === room.setup[a][b];
         } else {
             return false;
@@ -152,6 +153,7 @@ const room = {
         if (room.isInRoom(location)) {
             let a = Math.floor(location.y * room.ygrid / room.height);
             let b = Math.floor(location.x * room.xgrid / room.width);
+            if (a === room.ygrid || b === room.xgrid || a < 0 || b < 0) return false;
             let v = room.setup[a][b];
             return v !== 'nest';
         } else {
@@ -4647,15 +4649,17 @@ var maintainloop = (() => {
     // The NPC function
     let makenpcs = (() => {
         // Make base protectors if needed.
+        if (c.BASE_PROTECTORS) {
             let f = (loc, team) => { 
                 let o = new Entity(loc);
-                    o.define(Class.baseProtector2);
+                if (typeof c.BASE_PROTECTOR !== 'string' || !Class[c.BASE_PROTECTOR]) throw new Error('invalid base protector')
+                    o.define(Class[c.BASE_PROTECTOR]);
                     o.team = -team;
                     o.color = [10, 11, 12, 15][team-1];
             };
             for (let i=1; i<5; i++) {
                 room['bas' + i].forEach((loc) => { f(loc, i); }); 
-            }
+            }}
         // Return the spawning function
         let bots = [];
         return () => {

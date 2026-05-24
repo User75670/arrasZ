@@ -74,5 +74,7 @@
   "SKILL_BOOST": 5,
   "BOTS": 4,
   "GLASS_HEALTH_FACTOR": 2,
-  "ZOMBIE": false
+  "ZOMBIE": false,
+  "BASE_PROTECTORS": true,
+  "BASE_PROTECTOR": "baseProtector2"
 }

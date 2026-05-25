@@ -4678,35 +4678,25 @@ var maintainloop = (() => {
             // Bots
                 if (bots.length < c.BOTS) {
                     let o = new Entity(room.random());
-                    let seed = Math.random();
                     let skillpoints = 40;
-                    let chance = 0.1;
                     let skills = {
                         dmg: 0,
                         hlth: 0,
                         bspd: 0,
                         blh: 0,
                         bpn: 0,
+                        bdmg: 0,
                         rld: 0,
                         spd: 0,
                         rgn: 0,
                         shd: 0
                     }
-                    for (let s in skillpoints) {
-                        if (seed < chance) {
-                            let points = Math.round(Math.random() * 9);
-                            skills[s] = points;
-                            skillpoints -= points;
-                            chance += 0.1;
-                        }
-                    }
                     while (skillpoints > 0) {
-                        let s = Object.keys(skills)[Math.round(Math.random() * Object.keys(skills).length)];
-                        let sval = skills[s];
-                        if (sval + skillpoints <= 9) {
-                            skills[s] += sval;
-                        }
+                        let s = Object.keys(skills)[Math.floor(Math.random() * Object.keys(skills).length)];
+                        skills[s]++;
+                        skillpoints--;
                     }
+                    if (skillpoints < 0) throw new Error('invalid skill points');
                     o.color = 17;
                     o.define(Class.bot);
                     o.define(Class.basic);
@@ -4718,6 +4708,7 @@ var maintainloop = (() => {
                             skills.bspd,
                             skills.blh,
                             skills.bpn,
+                            skills.bdmg,
                             skills.rld,
                             skills.spd,
                             skills.rgn,

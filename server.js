@@ -3333,7 +3333,7 @@ const sockets = (() => {
                                 if (p.body != null) { scoreCensus[p.team - 1] += p.body.skill.score; }
                             });
                             let possiblities = [];
-                            for (let i=0, m=0; i<4; i++) {
+                            for (let i=0, m=0; i<c.TEAMS; i++) {
                                 let v = Math.round(1000000 * (room['bas'+(i+1)].length + 1) / (census[i] + 1) / scoreCensus[i]);
                                 if (v > m) {
                                     m = v; possiblities = [i];
@@ -4655,7 +4655,7 @@ var maintainloop = (() => {
                     o.team = -team;
                     o.color = [10, 11, 12, 15][team-1];
             };
-            for (let i=1; i<5; i++) {
+            for (let i=1; i<=4; i++) {
                 room['bas' + i].forEach((loc) => { f(loc, i); }); 
             }}
         // Return the spawning function

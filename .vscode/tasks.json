@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Server",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "node server && exit"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Cd and run cloudflared",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "cd ../../../Tools/cloudflare-tunnel && cloudflared tunnel --url localhost:26302"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run cloudflared",
+      "type": "shell",
+      "command": "cloudflared",
+      "args": ["tunnel", "--url", "localhost:26302"],
+      "problemMatcher": []
+    }
+  ]
+}
+

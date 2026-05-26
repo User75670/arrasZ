@@ -94,9 +94,10 @@
   "MIN_SPEED": 0.001,
   "FOOD_AMOUNT": 0.1, 
   "SKILL_BOOST": 5,
-  "BOTS": 4,
+  "BOTS": 10,
   "GLASS_HEALTH_FACTOR": 2,
   "ZOMBIE": false,
   "BASE_PROTECTORS": true,
-  "BASE_PROTECTOR": "baseProtector"
+  "BASE_PROTECTOR": "baseProtector",
+  "BOT_PREFIX": ""
 }

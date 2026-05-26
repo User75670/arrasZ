@@ -1457,7 +1457,7 @@ var bringToLife = (() => {
     };
     return my => {
         // Size
-        if (my.SIZE - my.coreSize) my.coreSize += (my.SIZE - my.coreSize) / 100;
+        if (my.SIZE - my.coreSize) my.coreSize += (my.SIZE - my.coreSize);
         // Think 
         let faucet = (my.settings.independent || my.source == null || my.source === my) ? {} : my.source.control;
         let b = {
@@ -4680,6 +4680,8 @@ var maintainloop = (() => {
                 if (bots.length < c.BOTS) {
                     let o = new Entity(room.random());
                     let skillpoints = 40;
+                    let upgrades = [...Class.basic.UPGRADES_TIER_1, ...Class.basic.UPGRADES_TIER_2, ...Class.basic.UPGRADES_TIER_3];
+                    let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
                     let skills = {
                         dmg: 0,
                         hlth: 0,
@@ -4694,14 +4696,16 @@ var maintainloop = (() => {
                     }
                     while (skillpoints > 0) {
                         let s = Object.keys(skills)[Math.floor(Math.random() * Object.keys(skills).length)];
-                        skills[s]++;
-                        skillpoints--;
+                        if (skills[s] < c.MAX_SKILL) {
+                            skills[s]++;
+                            skillpoints--;
+                        }
                     }
                     if (skillpoints < 0) throw new Error('invalid skill points');
                     o.color = 17;
-                    o.define(Class.bot);
-                    o.define(Class.basic);
-                    o.define(Class.basic.UPGRADES_TIER_1[Math.floor(Math.random() * Class.basic.UPGRADES_TIER_1.length)]);
+                    o.define(upgrade === Class.smash ? Class.ramBot : Class.bot);
+                    // o.define(Class.basic)
+                    o.define(upgrade);
                     o.define({ 
                         SKILL: [
                             skills.dmg,

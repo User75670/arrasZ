@@ -4971,7 +4971,6 @@ var maintainloop = (() => {
                 } catch (err) { util.error(instance.label); util.error(err); instance.kill(); }
             }).filter(e => { return e; });     
             // Sum it up   
-            let done = false;
             let maxFood = 1 + room.maxFood + 15 * census.tank;      
             let maxNestFood = 1 + room.maxFood * room.nestFoodAmount;
             let foodAmount = census.sum;

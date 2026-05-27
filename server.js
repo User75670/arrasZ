@@ -8,6 +8,7 @@ require('dotenv').config();
 require('google-closure-library');
 goog.require('goog.structs.PriorityQueue');
 goog.require('goog.structs.QuadTree');
+const { performance: p } = require("perf_hooks");
 
 // Import game settings.
 const c = require('./config.json');
@@ -5097,7 +5098,7 @@ let server = http.createServer((req, res) => {
 
 let websockets = (() => {
     // Configure the websocketserver
-    let config = { server: server }
+    let config = { server: server, perMessageDeflate: false }
         server.listen(process.env.PORT || 8080, function httpListening() {
             util.log((new Date()) + ". Joint HTTP+Websocket server turned on, listening on port "+server.address().port + ".")
         })
@@ -5113,15 +5114,18 @@ let websockets = (() => {
 // Bring it to life
 const TPS = 30;
 const TICK = 1000 / TPS;
+const MAX_LAG_PROCESSING = 10 * TICK;
+const MAX_DELTA = 40;
 
-let timePassed = Date.now();
+let timePassed = p.now();
 let unusedTime = 0;
 
 function gameloop() {
-    const now = Date.now();
-    unusedTime += now - timePassed;
+    const now = p.now();
+    const delta = Math.min(MAX_DELTA, now - timePassed);
+    unusedTime += delta;
     timePassed = now;
-
+    if (unusedTime > MAX_LAG_PROCESSING) unusedTime = MAX_LAG_PROCESSING;
     while (unusedTime >= TICK) {
         simulation();
         unusedTime -= TICK;

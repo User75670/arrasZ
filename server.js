@@ -9,6 +9,8 @@ require('google-closure-library');
 goog.require('goog.structs.PriorityQueue');
 goog.require('goog.structs.QuadTree');
 
+// test comment
+
 // Import game settings.
 const c = require('./config.json');
 
@@ -4740,6 +4742,7 @@ var maintainloop = (() => {
                     let skillpoints = 40;
                     let upgrades = [Class.basic, ...Class.basic.UPGRADES_TIER_1, ...Class.basic.UPGRADES_TIER_2, ...Class.basic.UPGRADES_TIER_3];
                     let upgrade = upgrades[Math.floor(Math.random() * upgrades.length)];
+                    let skill_cap = upgrade.SKILL_CAP || [9,9,9,9,9,9,9,9,9,9]
                     let skills = {
                         dmg: 0,
                         hlth: 0,
@@ -4754,7 +4757,8 @@ var maintainloop = (() => {
                     }
                     while (skillpoints > 0) {
                         let s = Object.keys(skills)[Math.floor(Math.random() * Object.keys(skills).length)];
-                        if (skills[s] < c.MAX_SKILL) {
+                        let s_i = Object.keys(skills).indexOf(s)
+                        if (skills[s] < skill_cap[s_i]) {
                             skills[s]++;
                             skillpoints--;
                         }

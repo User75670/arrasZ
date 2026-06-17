@@ -4744,13 +4744,14 @@ var maintainloop = (() => {
             // Bots
                 if (bots.length < c.BOTS) {
                     const {upgrades} = require('./lib/definitions');
+
+                    let o = new Entity(room.random());
                     let botTeams = [0, 1, 2, 3, 4]
                     let team = botTeams[Math.floor(Math.random() * (teams + 1))];
-                    let o = new Entity(room.random());
                     let skillpoints = 40;
                     let botUpgrades = upgrades.flat();
                     let upgrade = botUpgrades[Math.floor(Math.random() * botUpgrades.length)];
-                    let skill_cap = upgrade.SKILL_CAP || [9,9,9,9,9,9,9,9,9,9]
+                    let skill_cap = upgrade.SKILL_CAP || [9,9,9,9,9,9,9,9,9,9];
                     let skills = {
                         rld: 0,
                         pen: 0,
@@ -4773,6 +4774,7 @@ var maintainloop = (() => {
                             skillpoints--;
                         }
                     }
+                    if (skillpoints < 0) throw new Error('invalid skill points');
 
                     // debug
 
@@ -4780,8 +4782,7 @@ var maintainloop = (() => {
                     //     util.debug(`Skill: ${s}, value: ${skills[s]}`);
                     // }
                     
-                    if (skillpoints < 0) throw new Error('invalid skill points');
-                    if (upgrade.IS_SMASHER === undefined) upgrade.IS_SMASHER = false;
+                    if (upgrade.IS_SMASHER == undefined || upgrade.IS_SMASHER == null) upgrade.IS_SMASHER = false;
                     o.define(upgrade.IS_SMASHER ? Class.ramBot : Class.bot);
                     o.define(upgrade);
                     o.define({ 
@@ -5136,26 +5137,26 @@ const TICK = 1000 / c.TPS;
 const MAX_UNUSED_TIME = 1000;
 const MAX_DELTA = 40;
 
-let loopTimestamp = p.now();
+let lastTimestamp = p.now();
 let unusedTime = 0;
 
-// improved game loop, much smoother than using setInterval
-function simulation() {
+// the thing that actually runs the game
+
+function gameloopwrapper() {
     const now = p.now();
-    const delta = Math.min(MAX_DELTA, now - loopTimestamp);
+    const delta = Math.min(MAX_DELTA, now - lastTimestamp);
     unusedTime += delta;
-    loopTimestamp = now;
+    lastTimestamp = now;
     if (unusedTime > MAX_UNUSED_TIME) unusedTime = MAX_UNUSED_TIME;
     while (unusedTime >= TICK) {
         gameloop();
         unusedTime -= TICK;
     }
 
-    setImmediate(simulation);
+    setImmediate(gameloopwrapper);
 }
 
-simulation();
+gameloopwrapper();
 
-// we don't need to change these
 setInterval(maintainloop, 200);
 setInterval(speedcheckloop, 1000);

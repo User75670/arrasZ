@@ -3503,7 +3503,7 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
-                    body.sendMessage('You have spawned! Welcome to the ArrasZ.');
+                    body.sendMessage('You have spawned! Welcome to ArrasZ.');
                     body.sendMessage('You will be invulnerable until you move or shoot.');
                     body.sendMessage(c.POISON_TILES ? 'Poisoned tiles are enabled' : 'Poison tiles are disabled');
                     if (c.POISON_TILES) {

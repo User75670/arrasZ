@@ -1733,6 +1733,7 @@ class Entity {
         this.team = master.team;
         this.isBot = false;
         this.spectator = false;
+        this.ignoreWalls = false;
         // This is for collisions
         this.updateAABB = () => {};
         this.getAABB = (() => {
@@ -2000,6 +2001,12 @@ class Entity {
                 this.foodCountup = 0;
             }
         }
+        if (set.IGNORE_WALLS != null) {
+            this.ignoreWalls = set.IGNORE_WALLS;
+        }
+        if (set.LAYER != null) {
+            this.layer = set.LAYER;
+        }
         if (set.BODY != null) {
             if (set.BODY.ACCELERATION != null) { 
                 this.ACCELERATION = set.BODY.ACCELERATION; 
@@ -2164,7 +2171,8 @@ class Entity {
             facing: this.facing,
             vfacing: this.vfacing,
             twiggle: this.facingType === 'autospin' || (this.facingType === 'locksFacing' && this.control.alt),
-            layer: (this.bond != null) ? this.bound.layer : 
+            layer:  (this.layer) ? this.layer : 
+                    (this.bond != null) ? this.bound.layer : 
                     (this.type === 'wall') ? 11 : 
                     (this.type === 'food') ? 10 : 
                     (this.type === 'tank') ? 5 :
@@ -4510,6 +4518,9 @@ var gameloop = (() => {
             // Pull the two objects from the collision grid      
             let instance = collision[0],
                 other = collision[1];   
+            let spectator = instance.spectator ? instance : other.spectator ? other : null;
+
+            if (spectator !== null && spectator.spectator) return;
             // Check for ghosts...
             if (other.isGhost) {
                 util.error('GHOST FOUND');
@@ -4536,7 +4547,9 @@ var gameloop = (() => {
             }
             if (!instance.activation.check() && !other.activation.check()) { util.warn('Tried to collide with an inactive instance.'); return 0; }
             // Handle walls
-            if (instance.type === 'wall' || other.type === 'wall') {
+            if ((instance.type === 'wall' || other.type === 'wall')) {
+                let tank = instance.type !== 'wall' ? instance : other;
+                if (tank.ignoreWalls) return;
                 let a = (instance.type === 'bullet' || other.type === 'bullet') ? 
                     1 + 10 / (Math.max(instance.velocity.length, other.velocity.length) + 10) : 
                     1;

@@ -58,7 +58,7 @@ for (let i = 1; i < setup.length; i++) {
 }
 const room = {
     lastCycle: undefined,
-    cycleSpeed: 1000 / roomSpeed / 30,
+    cycleSpeed: 1000 / roomSpeed / c.TPS,
     maintainloopSpeed: 200,
     width: map.width,
     height: map.height,

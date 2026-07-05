@@ -47,7 +47,7 @@ const setup = map.setup;
 const ygrid = setup.length;
 const xgrid = setup[0].length;
 let teams = map.teams; 
-if (!Array.isArray(map.disabledBases)) {map.disabledBases = []; util.warn('Invalid disabled bases. Reverting to default.')};
+if (!Array.isArray(map.disabledBases)) map.disabledBases = [];
 if ((typeof map.height !== 'number' || typeof map.width !== 'number') && map.height <= 0 || map.width <= 0 || !Number.isFinite(map.width) || !Number.isFinite(map.height)) 
     {map.height = 1500; map.width = 1500; util.warn('Invalid map width or height. Reverting to default.')};
 

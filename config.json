@@ -15,7 +15,7 @@
   "MODE": "tdm",
   "RANDOM_COLORS": false,
   "BANNED_CHARACTER_REGEX": "/[\uFDFD\u200E\u0000]/gi", 
-  "MAP": "2tdm",
+  "MAP": "old2tdm",
   "MAPS": {
     "custom": {
       "height": 3000,
@@ -143,9 +143,9 @@
   "BOTS": 6,
   "GLASS_HEALTH_FACTOR": 2,
   "BASE_PROTECTORS": true,
-  "BASE_PROTECTOR": "baseProtector",
+  "BASE_PROTECTOR": "baseProtector2",
   "BOT_PREFIX": "[BOT] ",
-  "POISON_TILES": false,
+  "POISON_TILES": true,
   "MAX_POISONED_TILES": 2,
   "POISONED_TILE_CHANCE_5HZ": 0.1,
   "MAX_POISONED_TILE_TIME": 60

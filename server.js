@@ -615,10 +615,9 @@ class io_nearestDifferentMaster extends IO {
         for (let i=0; i<this.body.guns.length; i++) {
             if (this.body.guns[i].canShoot && !this.body.aiSettings.skynet) {
                 let v = this.body.guns[i].getTracking();
-                let gunSpeed = Math.max(v.speed || 0, 0.01);
-                let gunRange = (v.range != null) ? (v.range * v.range) : (v.range);
-                tracking = gunSpeed;
-                range = Math.min(range, gunRange);
+                if (v.speed == 0 || v.range == 0) continue;
+                tracking = v.speed;
+                range = Math.min(range, v.speed * v.range);
                 break;
             }
         }
@@ -4218,14 +4217,14 @@ const sockets = (() => {
                         socket.send(protocol.encode(message), { binary: true, }, () => setTimeout(() => socket.terminate(), 1000));
                     } 
                 };
+                util.log('A client is trying to connect...');
+
                 const bannedIps = JSON.parse(process.env.BANNED_IPS || '[]');
                 // Get information about the new connection and verify it
                 if (bannedIps.some(ip => ip === socket.ip)) {
-                    util.log('Banned client trying to connect... Kicking');
-                    socket.kick();
+                    socket.kick('Client is banned.');
                     return;
                 }
-                util.log('A client is trying to connect...');
 
                 socket.on('message', message => incoming(message, socket));
                 socket.on('close', () => { socket.loops.terminate(); close(socket); });

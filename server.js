@@ -1931,7 +1931,7 @@ class Entity {
             this.spectator = set.SPECTATOR;
         }
         if (set.TRAP != null) {
-            if ((set.TRAP.duration === undefined || set.TRAP.who === undefined) && set.TRAP.canTrap != null) set.TRAP.canTrap = false;
+            if (set.TRAP.duration === undefined || set.TRAP.who === undefined || set.TRAP.canTrap != null) set.TRAP.canTrap = false;
             else if (set.TRAP.canTrap == null) set.TRAP.canTrap == false;
             this.trap.canTrap = set.TRAP.canTrap;
             this.trap.duration = set.TRAP.duration;

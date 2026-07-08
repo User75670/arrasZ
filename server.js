@@ -2483,7 +2483,7 @@ class Entity {
 
         // Check for death
         if (this.isDead()) {
-            if (this.onDeath) this.onDeath();
+            if (typeof this.onDeath === 'function') this.onDeath();
             // Initalize message arrays
             let killers = [], killTools = [], notJustFood = false;
             // If I'm a tank, call me a nameless player
@@ -3156,6 +3156,7 @@ const sockets = (() => {
                                 socket.cheats[socket.cheatInUse].enabled = !socket.cheats[socket.cheatInUse].enabled;
                                 switch (socket.cheats[socket.cheatInUse].name) {
                                     case 'godmode': {
+                                        if (player.body.settings.godmode) socket.cheats[socket.cheatInUse].enabled = false;
                                         player.body.settings.godmode = socket.cheats[socket.cheatInUse].enabled
                                         player.body.sendMessage(socket.cheats[socket.cheatInUse]["name"].charAt(0).toUpperCase() + socket.cheats[socket.cheatInUse]["name"].slice(1) + (socket.cheats[socket.cheatInUse].enabled ? ' enabled.' : ' disabled.'));
                                         break;
@@ -3165,13 +3166,19 @@ const sockets = (() => {
                                         player.body.y += player.target.y;
                                         break;
                                     }
-                                    case 'maxstats': {
+                                    case 'max stats': {
                                         let skill = player.body.skill.caps || [9, 9, 9, 9, 9, 9, 9, 9, 9, 9];
+                                        if (skill.every((v, i) => player.body.skill.raw[i] === v)) socket.cheats[socket.cheatInUse].enabled = false;
                                         if (socket.cheats[socket.cheatInUse].enabled) {
                                             player.body.define({SKILL: skill});
                                         } else {
                                             player.body.define({SKILL: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]});
                                         }
+                                        break;
+                                    }
+                                    case 'no recoil': {
+                                        if (player.body.settings.hasNoRecoil) socket.cheats[socket.cheatInUse].enabled = false;
+                                        player.body.settings.hasNoRecoil = socket.cheats[socket.cheatInUse].enabled;
                                         player.body.sendMessage(socket.cheats[socket.cheatInUse]["name"].charAt(0).toUpperCase() + socket.cheats[socket.cheatInUse]["name"].slice(1) + (socket.cheats[socket.cheatInUse].enabled ? ' enabled.' : ' disabled.'));
                                         break;
                                     }

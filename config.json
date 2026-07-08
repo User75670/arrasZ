@@ -150,8 +150,8 @@
   "MAX_POISONED_TILES": 2,
   "POISONED_TILE_CHANCE_5HZ": 0.1,
   "MAX_POISONED_TILE_TIME": 60,
-  "DEVELOPER_CHEATS": ["godmode", "teleport", "maxstats"],
-  "BETA_TESTER_CHEATS": ["maxstats"],
+  "DEVELOPER_CHEATS": ["godmode", "teleport", "max stats", "no recoil"],
+  "BETA_TESTER_CHEATS": ["max stats", "no recoil"],
   "DEV_CLASS": "testbed",
   "BT_CLASS": "betatester"
 }

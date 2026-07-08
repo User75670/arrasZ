@@ -3186,7 +3186,7 @@ const sockets = (() => {
                             }
                         } else if (given === 'switchcheat') {
                             
-                            if (socket.key === process.env.SECRET) {
+                            if (socket.cheats.length !== 0) {
                                 if (socket.cheatInUse < socket.cheats.length - 1) {
                                     socket.cheatInUse++
                                 } else {

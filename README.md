@@ -1,2 +1,2 @@
 # ArrasZ
-* Unofficial arras.io private server. (fork of the arras.cx template)
+* Unofficial arras.io private server. (fork of the original arras template)

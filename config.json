@@ -46,19 +46,19 @@
       "mode": "tdm",
       "teams": 2,
       "setup": [
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "nest", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "nest", "nest", "nest", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "nest", "nest", "nest", "nest", "nest", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "nest", "nest", "nest", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "nest", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"],
-        ["bas1", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "norm", "bas2"]
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "nest", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "nest", "nest", "nest", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "nest", "nest", "nest", "nest", "nest", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "nest", "nest", "nest", "nest", "nest", "nest", "nest", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "nest", "nest", "nest", "nest", "nest", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "nest", "nest", "nest", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "nest", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"],
+        ["bas1", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "grav", "bas2"]
       ]
     },
     "2tdm": {
@@ -150,7 +150,7 @@
   "POISONED_TILE_CHANCE_5HZ": 0.1,
   "MAX_POISONED_TILE_TIME": 60,
   "DEVELOPER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "kill", "kick", "tempban"],
-  "BETA_TESTER_CHEATS": ["max stats", "no recoil"],
+  "BETA_TESTER_CHEATS": ["max stats", "no recoil", "teleport", "spawn bots"],
   "DEV_CLASS": "testbed",
   "BT_CLASS": "betatester"
 }

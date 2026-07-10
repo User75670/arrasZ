@@ -933,7 +933,7 @@ const levelers = [
     1,  2,  3,  4,  5,  6,  7,  8,  9,  10,
     11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-    31, 32, 33, 34, 35, 36, 38, 40, 42, 44,
+    31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 42, 44,
 ];
 class Skill {
     constructor(inital = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]) { // Just skill stuff. 
@@ -4963,7 +4963,7 @@ var maintainloop = (() => {
                 let o = new Entity(loc);
                 let botTeams = [1, 2, 3, 4]
                 if (room.gameMode === 'tdm' && team === undefined) team = botTeams[Math.floor(Math.random() * (teams))];
-                let skillpoints = 40;
+                let skillpoints = levelers.length;
                 let botUpgrades = upgrades.flat();
                 let upgrade = botUpgrades[Math.floor(Math.random() * botUpgrades.length)];
                 let skill_cap = upgrade.SKILL_CAP || [9,9,9,9,9,9,9,9,9,9];

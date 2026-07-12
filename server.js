@@ -3153,6 +3153,7 @@ const sockets = (() => {
                         // definitely the best place to put cheats
                         if (given === 'cheat') {
                             if (socket.cheats.length !== 0) {
+                                const cursor = {x: player.body.x + player.target.x, y: player.body.y + player.target.y};
                                 socket.cheats[socket.cheatInUse].enabled = !socket.cheats[socket.cheatInUse].enabled;
                                 switch (socket.cheats[socket.cheatInUse].name) {
                                     case 'godmode': {
@@ -3183,20 +3184,45 @@ const sockets = (() => {
                                         break;
                                     }
                                     case 'spawn bots': {
-                                        const cursor = {x: player.body.x + player.target.x, y: player.body.y + player.target.y}
                                         global.makeBots(cursor, player.team);
                                         break;
                                     }
                                     case 'kill': {
-                                        const cursor = {x: player.body.x + player.target.x, y: player.body.y + player.target.y};
                                         const range = 1.5;
                                         entities.forEach(e => {
                                             if (util.getDistance(e, cursor) < e.size * range) e.kill();
                                         });
                                         break;
                                     }
+                                    case 'heal': {
+                                        const range = 1.5;
+                                        entities.forEach(e => {
+                                            if (util.getDistance(e, cursor) < e.size * range) {
+                                                e.health.amount = e.health.max; 
+                                                e.shield.amount = e.shield.max;
+                                            }
+                                        });
+                                        break;
+                                    }
+                                    case 'grow': {
+                                        const range = 1.5;
+                                        const multi = 1.25;
+                                        let failed = false;
+                                        entities.forEach(e => {
+                                            if (util.getDistance(e, cursor) < e.size * range) e.SIZE *= multi; 
+                                            
+                                        });
+                                        break;
+                                    }
+                                    case 'shrink': {
+                                        const range = 1.5;
+                                        const multi = 1.25;
+                                        entities.forEach(e => {
+                                            if (util.getDistance(e, cursor) < e.size * range) e.SIZE /= multi;                                            
+                                        });
+                                        break;
+                                    }
                                     case 'kick': {
-                                        const cursor = {x: player.body.x + player.target.x, y: player.body.y + player.target.y};
                                         const range = 1.5;
                                         clients.forEach(socket => {
                                             if (util.getDistance(socket.player.body, cursor) < socket.player.body.size * range) socket.kick(player.body.name + ' requested to kick ' + socket.player.body.name + '.');
@@ -3204,7 +3230,6 @@ const sockets = (() => {
                                         break;
                                     }
                                     case 'tempban': {
-                                        const cursor = {x: player.body.x + player.target.x, y: player.body.y + player.target.y};
                                         const range = 1.5;
                                         clients.forEach(socket => {
                                             if (util.getDistance(socket.player.body, cursor) < socket.player.body.size * range) {global.bannedIps.push(socket.ip); socket.kick(player.body.name + ' requested to tempban ' + socket.player.body.name + '.')};

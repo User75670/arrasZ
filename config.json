@@ -149,7 +149,7 @@
   "MAX_POISONED_TILES": 2,
   "POISONED_TILE_CHANCE_5HZ": 0.1,
   "MAX_POISONED_TILE_TIME": 60,
-  "DEVELOPER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "kill", "kick", "tempban"],
+  "DEVELOPER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "kill", "heal", "grow", "shrink", "kick", "tempban"],
   "BETA_TESTER_CHEATS": ["max stats", "no recoil", "teleport", "spawn bots"],
   "DEV_CLASS": "testbed",
   "BT_CLASS": "betatester"

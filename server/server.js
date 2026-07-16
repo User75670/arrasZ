@@ -31,7 +31,6 @@ Array.prototype.remove = index => {
 
 // Set up room.
 global.bannedIps = JSON.parse(process.env.BANNED_IPS || '[]');
-global.foodClearing = {toClear: false, timePassed: 0}
 global.fps = "Unknown";
 var roomSpeed = c.gameSpeed;
 

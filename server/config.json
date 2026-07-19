@@ -139,7 +139,7 @@
   "MIN_SPEED": 0.001,
   "FOOD_AMOUNT": 0.2, 
   "SKILL_BOOST": 5,
-  "BOTS": 6,
+  "BOTS": 8,
   "GLASS_HEALTH_FACTOR": 2,
   "BASE_PROTECTORS": true,
   "BASE_PROTECTOR": "baseProtector",

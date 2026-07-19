@@ -8080,7 +8080,7 @@ exports.pacifierJuggernaut = Dreadnought.combine('Pacifier-Juggernaut', exports.
         TYPE: [exports.eggJuggernautProp]
     },
     // 1.5x more health than normal egg dreadnought
-], {BODY: {HEALTH: base.HEALTH * 3}})
+], {BODY: {HEALTH: base.HEALTH * 2.25, RESIST: base.RESIST * 1.5}})
 exports.pacifierGuard = Dreadnought.combine('Pacifier-Guard', exports.pacifier, [
     {
         POSITION: [base.SIZE * 1.3, 0, 0, 0, 0, 1],
@@ -8134,7 +8134,7 @@ exports.swordJuggernaut = Dreadnought.combine('Sword-Juggernaut', exports.sword,
         POSITION: [base.SIZE * 2, 0, 0, 0, 0, 0],
         TYPE: [exports.eggJuggernautProp]
     },
-], {BODY: {HEALTH: base.HEALTH * 3}})
+], {BODY: {HEALTH: base.HEALTH * 2.25, RESIST: base.RESIST * 1.5}})
 exports.swordGuard = Dreadnought.combine('Sword-Guard', exports.sword, [
     {
         POSITION: [base.SIZE * 1.3, 0, 0, 0, 0, 1],
@@ -8186,7 +8186,7 @@ exports.peacekeeperJuggernaut = Dreadnought.combine('Peacekeeper-Juggernaut', ex
         POSITION: [base.SIZE * 2, 0, 0, 0, 0, 0],
         TYPE: [exports.eggJuggernautProp]
     },
-], {BODY: {HEALTH: base.HEALTH * 3}})
+], {BODY: {HEALTH: base.HEALTH * 2.25, RESIST: base.RESIST * 1.5}})
 exports.peacekeeperGuard = Dreadnought.combine('Peacekeeper-Guard', exports.peacekeeper, [
     {
         POSITION: [base.SIZE * 1.3, 0, 0, 0, 0, 1],
@@ -8242,7 +8242,7 @@ exports.invaderJuggernaut = Dreadnought.combine('Invader-Juggernaut', exports.in
         POSITION: [base.SIZE * 2, 0, 0, 0, 0, 0],
         TYPE: [exports.eggJuggernautProp]
     },
-], {BODY: {HEALTH: base.HEALTH * 3}})
+], {BODY: {HEALTH: base.HEALTH * 2.25, RESIST: base.RESIST * 1.5}})
 exports.invaderGuard = Dreadnought.combine('Invader-Guard', exports.invader, [
     {
         POSITION: [base.SIZE * 1.3, 0, 0, 0, 0, 1],
@@ -8296,7 +8296,7 @@ exports.centaurJuggernaut = Dreadnought.combine('Centaur-Juggernaut', exports.ce
         POSITION: [base.SIZE * 2, 0, 0, 0, 0, 0],
         TYPE: [exports.eggJuggernautProp]
     },
-], {BODY: {HEALTH: base.HEALTH * 3}})
+], {BODY: {HEALTH: base.HEALTH * 2.25, RESIST: base.RESIST * 1.5}})
 exports.centaurGuard = Dreadnought.combine('Centaur-Guard', exports.centaur, [
     {
         POSITION: [base.SIZE * 1.3, 0, 0, 0, 0, 1],

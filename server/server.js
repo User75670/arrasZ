@@ -3042,13 +3042,24 @@ const sockets = (() => {
                     if (m.length > 1) { socket.kick('Ill-sized key request.'); return 1; }
                     if (socket.status.verified) { socket.kick('Duplicate player spawn attempt.'); return 1; }
                     socket.talk('w', true)
-                    if (m.length === 1) {
+                    if (m.length !== 1) {
+                        switch (c.EVENT) {
+                            case "developer": socket.key = process.env.SECRET; break;
+                            case "beta tester": socket.key = process.env.BT; break;
+                            case "trusted player": socket.key = process.env.TRUSTED; break;
+                            case "free menu": socket.key = process.env.FREE; break;
+                        }
+                    } else if (m.length === 1) {
                         let key = m[0];
                         socket.key = key;
                         util.log('[INFO] A socket was verified with the token: '); util.log(key);
                     }
+
                     let cheats = [];
                     switch (socket.key) {
+                        case process.env.DEV_ONLY:
+                            cheats = c.DEV_CHEATS_2;
+                            break;
                         case process.env.SECRET:
                             cheats = c.DEVELOPER_CHEATS;
                             break;
@@ -3386,6 +3397,7 @@ const sockets = (() => {
                     if (player.body != null) { 
                         let cl;
                         switch (socket.key) {
+                            case process.env.DEV_ONLY:
                             case process.env.SECRET:  cl = c.DEV_CLASS; break;
                             case process.env.BT:      cl = c.BT_CLASS;  break;
                             case process.env.TRUSTED: cl = c.TP_CLASS;  break;

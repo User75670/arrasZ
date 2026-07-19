@@ -2574,7 +2574,7 @@
       break;
     }
   })(`
-# Dreadnoughts + other
+# Dreadnoughts + other (July 18 2026)
 - Added egg dreadnoughts
 - Organized menus better
 - Removed Game Tanks menu
@@ -2582,12 +2582,6 @@
 
 # Fixed duplicate selectors bug (July 16 2026)
 - Server selectors now work and are no longer duplicate.
-
-# Beginning of independent Arras756 (July 15 2026)
-- The game is independent from arras.cx now.
-- The reason the UI doesn't seem the same as arras.cx is because I got the files by pressing Ctrl + S in the arras.cx website, which can be inaccurate. (there were no official client files provided)
-- Right now you can see that there are duplicate server selectors, which will be fixed soon.
-- The client file is also hard to read because the variable names have been changes to generic ones like a, b, c, etc.
 
 # Event [2022-11-11] Skinwalkers
 - In this event, you will be possessing the form of those you kill! Upon killing another player, their class will manifest within you!

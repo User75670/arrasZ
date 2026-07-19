@@ -148,12 +148,14 @@
   "MAX_POISONED_TILES": 2,
   "POISONED_TILE_CHANCE_5HZ": 5,
   "MAX_POISONED_TILE_TIME": 20,
-  "DEVELOPER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "clear", "kill", "heal", "grow", "shrink", "zoom out", "zoom in", "kick", "tempban"],
+  "DEV_CHEATS_2": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "clear", "kill", "heal", "grow", "shrink", "zoom out", "zoom in", "kick", "tempban"],
+  "DEVELOPER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "clear", "kill", "heal", "grow", "shrink", "zoom out", "zoom in"],
   "BETA_TESTER_CHEATS": ["godmode", "no recoil", "max stats", "teleport", "spawn bots", "clear", "kill", "heal", "grow", "shrink", "zoom out", "zoom in"],
   "TRUSTED_PLAYER_CHEATS": ["max stats", "no recoil", "teleport", "spawn bots", "clear", "zoom out", "zoom in"],
   "FREE_MENU_CHEATS": ["max stats", "no recoil", "clear"],
   "DEV_CLASS": "developer",
   "BT_CLASS": "betatester",
   "TP_CLASS": "trustedPlayer",
-  "FREE_CLASS": "freeMenu"
+  "FREE_CLASS": "freeMenu",
+  "EVENT": "developer"
 }

@@ -7501,6 +7501,9 @@
             "Tip: You can create your own theme with the custom theme maker in the link on the options menu.",
           ],
           [
+            "This is an arras.io private server lol",
+          ],
+          [
             "Teaming in FFA or FFA Maze is frowned upon, but when taken to the extremes, you can be punished.",
             "Witch hunting is when you continuously target someone and follow them. This is frowned upon, but when taken to the extremes, you can be punished.",
             "Multiboxing is when you use a script to control multiple tanks at the same time. This is considered CHEATING and will result in a ban.",

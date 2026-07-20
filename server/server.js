@@ -3759,6 +3759,9 @@ const sockets = (() => {
                     socket.camera.x = body.x; socket.camera.y = body.y; socket.camera.fov = 2000;
                     // Mark it as spawned
                     socket.status.hasSpawned = true;
+                    if (!player.body.name.trim()) { // prevent space only names
+                        player.body.name = player.body.name.trim();
+                    }
                     body.sendMessage('You have spawned! Welcome to Arras756.');
                     body.sendMessage('You will be invulnerable until you move or shoot.');
                     body.sendMessage(c.POISON_TILES ? 'Poisoned tiles are enabled' : 'Poisoned tiles are disabled');
@@ -3766,6 +3769,13 @@ const sockets = (() => {
                         body.sendMessage(`Poisoned tile chance per 200 ms (5 Hz): ${c.POISONED_TILE_CHANCE_5HZ}%`);
                         body.sendMessage(`Max poisoned tile time: ${c.MAX_POISONED_TILE_TIME} seconds`);
                         body.sendMessage(`Max poisoned tiles: ${c.MAX_POISONED_TILES}`);
+                    }
+                    // broadcast player count when someone joins
+                    if (player.body.name.trim()) {
+                        sockets.broadcast(`${player.body.name} has joined! Total players: ${clients.length}`);
+                    } else {
+                        // we don't want it to broadcast space only names
+                        sockets.broadcast(`An unnamed player has joined! Total players: ${clients.length}`);
                     }
                     // Move the client camera
                     socket.talk('c', socket.camera.x, socket.camera.y, socket.camera.fov);

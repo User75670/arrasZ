@@ -1775,6 +1775,7 @@ class Entity {
         this.isFood = false;
         this.spectator = false;
         this.arenaCloser = false;
+        this.tilePoisonSettings = {canWarn: true}
         // This is for collisions
         this.updateAABB = () => {};
         this.getAABB = (() => {
@@ -2487,6 +2488,12 @@ class Entity {
 
             if (room.tiles[y][x].poisoned && !this.settings.godmode && !this.spectator) {
                 this.health.amount -= this.health.getDamage(2 / roomSpeed);
+                if (this.tilePoisonSettings.canWarn && c.WARN_ON_POISONED_TILE) {
+                    this.tilePoisonSettings.canWarn = false;
+                    this.sendMessage("⚠️You've stepped on a poisoned tile. Get away quick.");
+                }
+            } else if (!room.tiles[y][x].poisoned && !this.settings.godmode && !this.settings.spectator && c.WARN_ON_POISONED_TILE) {
+                this.tilePoisonSettings.canWarn = true;
             }
         }
     }
@@ -4970,7 +4977,8 @@ var maintainloop = (() => {
                     room.tiles[y][x].poisoned = true;
                     room.tiles[y][x].timePassed = 0;
                     room.poisonedTiles++;
-                    sockets.broadcast(`Tile at x: ${x}, y: ${y} has been poisoned!`);
+                    if (c.ANONYMOUS_TILE_POISONING) sockets.broadcast('A tile has been poisoned!');
+                    else sockets.broadcast(`Tile at x: ${x}, y: ${y} has been poisoned!`);
                 }
                 x++;
             });
@@ -4989,7 +4997,8 @@ var maintainloop = (() => {
                         room.tiles[y][x].poisoned = false;
                         room.tiles[y][x].timePassed = 0;
                         room.poisonedTiles--;
-                        sockets.broadcast(`Tile at x: ${x}, y: ${y} has been unpoisoned!`);
+                        if (c.ANONYMOUS_TILE_POISONING) sockets.broadcast('A tile has been unpoisoned!');
+                        else sockets.broadcast(`Tile at x: ${x}, y: ${y} has been unpoisoned!`);
                     }
                 }
                 x++;

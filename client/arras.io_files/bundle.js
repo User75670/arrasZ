@@ -2580,6 +2580,13 @@
       break;
     }
   })(`
+# Upcoming Zombie Defense gamemode + other (July 22)
+- Finished Zombie Defense gamemode map.
+- Finished Sanctuaries
+- Added Mega Trapper, Auto-Mega Trapper and Giga Trapper.
+- Added Tera Trapper to developer, trusted player menu and free tanks menu.
+- Added Factory Closer
+
 # Idk what to call this update (July 20 2026)
 - Updated juggernaut.
 - Added guard branch to egg dreadnoughts, spawns 3 independent drones.

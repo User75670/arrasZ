@@ -177,7 +177,7 @@ const g = { // Gun info here
 const dfltskl = 9;
 
 // FUNCTIONS
-function makeSwarmSpawner(guntype) {
+function makeSwarmSpawner(guntype, recoil = false) {
     return {
         PARENT: [exports.genericTank],
         LABEL: '',
@@ -186,13 +186,14 @@ function makeSwarmSpawner(guntype) {
         },
         CONTROLLERS: ['nearestDifferentMaster'], 
         COLOR: 16,
+        HAS_NO_RECOIL: recoil,
         AI: {
             NO_LEAD: true,
             SKYNET: true,
             FULL_VIEW: true,
         },
         GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-            POSITION: [  14,     15,    0.6,    14,      0,      0,      0,   ], 
+            POSITION: [  10,     12,    0.6,    7,      0,      0,      0,   ], 
             PROPERTIES: {
                 SHOOT_SETTINGS: guntype,
                 TYPE: exports.swarm,
@@ -2995,7 +2996,6 @@ exports.single = {
             };
         
      
-        exports.cruiserGun = makeSwarmSpawner(combineStats([g.swarm]));
         exports.cruiser = {
             PARENT: [exports.genericTank],
             LABEL: 'Cruiser',
@@ -8318,7 +8318,172 @@ exports.invader.UPGRADES_TIER_0 = [exports.invaderTracker, exports.invaderByte, 
 exports.centaur.UPGRADES_TIER_0 = [exports.centaurTracker, exports.centaurByte, exports.centaurJuggernaut, exports.centaurGuard];
 
 
+exports.sanctuaryCruiserTurret = makeSwarmSpawner(combineStats([g.swarm, g.fast, g.fast, g.fast]), true);
 
+exports.sanctuaryV1 = {
+    PARENT: [exports.genericTank],
+    LABEL: "Sanctuary",
+    DANGER: 10,
+    SIZE: 30,
+    LEVEL: 45,
+    FACING_TYPE: 'autospin',
+    ACCEPTS_SCORE: false,
+    HAS_NO_RECOIL: true,
+    SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
+    BODY: {
+        HEALTH: base.HEALTH * 10,
+        DAMAGE: base.DAMAGE * 1.5,
+        SHIELD: base.SHIELD * 2,
+        REGEN: base.REGEN * 0.1,
+        RESIST: base.RESIST * 1.25,
+        DENSITY: base.DENSITY * 5,
+        PUSHABILITY: 0,
+    },
+    GUNS: [ 
+        ...repeatGuns(6, {POSITION: [14, 6, 1, 0, 0, 0, 0]}, {angleMod: 360 / 6}),     
+        ...repeatGuns(6,{
+            POSITION: [2.5, 6, 1.7, 14, 0, 0, 0],
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.slow, g.slow, g.lessreload]),
+                TYPE: [exports.trap],
+                AUTOFIRE: true,
+            },
+        }, {angleMod: 360 / 6})
+    ],
+    TURRETS: [
+        {
+            POSITION: [  25,     0,      0,      0,     360,  0], 
+            TYPE: [exports.dominationBody]
+        },
+        {
+            POSITION: [10, 0, 0, 0, 360, 1],
+            TYPE: [exports.sanctuaryCruiserTurret]
+        }
+    ]
+}
+exports.sanctuaryV2 = {
+    PARENT: [exports.genericTank],
+    LABEL: "Sanctuary",
+    DANGER: 10,
+    SIZE: 30,
+    LEVEL: 45,
+    FACING_TYPE: 'autospin',
+    ACCEPTS_SCORE: false,
+    HAS_NO_RECOIL: true,
+    SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
+    BODY: {
+        HEALTH: base.HEALTH * 15,
+        DAMAGE: base.DAMAGE * 2,
+        SHIELD: base.SHIELD * 2.5,
+        REGEN: base.REGEN * 0.15,
+        RESIST: base.RESIST * 1.25,
+        DENSITY: base.DENSITY * 5,
+        PUSHABILITY: 0,
+    },
+    GUNS: [ 
+        ...repeatGuns(8, {POSITION: [14, 6, 1, 0, 0, 0, 0]}, {angleMod: 360 / 8}),     
+        ...repeatGuns(8,{
+            POSITION: [2.5, 6, 1.7, 14, 0, 0, 0],
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.slow, g.slow, g.lessreload]),
+                TYPE: [exports.trap],
+                AUTOFIRE: true,
+            },
+        }, {angleMod: 360 / 8})
+    ],
+    TURRETS: [
+        {
+            POSITION: [  25,     0,      0,      0,     360,  0], 
+            TYPE: [exports.dominationBody]
+        },
+        ...repeatTurrets(2,         {
+            POSITION: [7, 5, 0, 0, 360, 1],
+            TYPE: [exports.sanctuaryCruiserTurret]
+        }, {angleMod: 360 / 2})
+    ]
+}
+exports.sanctuaryV3 = {
+    PARENT: [exports.genericTank],
+    LABEL: "Sanctuary",
+    DANGER: 10,
+    SIZE: 30,
+    LEVEL: 45,
+    FACING_TYPE: 'autospin',
+    ACCEPTS_SCORE: false,
+    HAS_NO_RECOIL: true,
+    SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
+    BODY: {
+        HEALTH: base.HEALTH * 20,
+        DAMAGE: base.DAMAGE * 2.5,
+        SHIELD: base.SHIELD * 3,
+        REGEN: base.REGEN * 0.2,
+        RESIST: base.RESIST * 1.25,
+        DENSITY: base.DENSITY * 5,
+        PUSHABILITY: 0,
+    },
+    GUNS: [ 
+        ...repeatGuns(10, {POSITION: [14, 5, 1, 0, 0, 0, 0]}, {angleMod: 360 / 10}),     
+        ...repeatGuns(10,{
+            POSITION: [2.5, 5, 1.7, 14, 0, 0, 0],
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.slow, g.slow, g.lessreload]),
+                TYPE: [exports.trap],
+                AUTOFIRE: true,
+            },
+        }, {angleMod: 360 / 10})
+    ],
+    TURRETS: [
+        {
+            POSITION: [  25,     0,      0,      0,     360,  0], 
+            TYPE: [exports.dominationBody]
+        },
+        ...repeatTurrets(3,         {
+            POSITION: [6, 6, 0, 0, 360, 1],
+            TYPE: [exports.sanctuaryCruiserTurret]
+        }, {angleMod: 360 / 3})
+    ]
+}
+exports.sanctuaryV4 = {
+    PARENT: [exports.genericTank],
+    LABEL: "Sanctuary",
+    DANGER: 10,
+    SIZE: 30,
+    LEVEL: 45,
+    FACING_TYPE: 'autospin',
+    ACCEPTS_SCORE: false,
+    HAS_NO_RECOIL: true,
+    SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
+    BODY: {
+        HEALTH: base.HEALTH * 25,
+        DAMAGE: base.DAMAGE * 3,
+        SHIELD: base.SHIELD * 3.5,
+        REGEN: base.REGEN * 0.25,
+        RESIST: base.RESIST * 1.25,
+        DENSITY: base.DENSITY * 5,
+        PUSHABILITY: 0,
+    },
+    GUNS: [ 
+        ...repeatGuns(12, {POSITION: [13, 4, 1, 0, 0, 0, 0]}, {angleMod: 360 / 12}),     
+        ...repeatGuns(12, {
+            POSITION: [2.5, 4, 1.7, 13, 0, 0, 0],
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.trap, g.slow, g.slow, g.lessreload]),
+                TYPE: [exports.trap],
+                AUTOFIRE: true,
+            },
+        }, {angleMod: 360 / 12})
+    ],
+    TURRETS: [
+        {
+            POSITION: [  25,     0,      0,      0,     360,  0], 
+            TYPE: [exports.dominationBody]
+        },
+        ...repeatTurrets(4,         {
+            POSITION: [6, 6, 0, 0, 360, 1],
+            TYPE: [exports.sanctuaryCruiserTurret]
+        }, {angleMod: 360 / 4})
+    ]
+}
 exports.bossesMenu = {
     PARENT: [exports.menu],
     LABEL: 'Bosses'
@@ -8572,7 +8737,7 @@ exports.sentries.UPGRADES_TIER_0 = [
     exports.sentrySwarm,
     exports.sentryTrap
 ]
-exports.betatanks.UPGRADES_TIER_0 = []
+exports.betatanks.UPGRADES_TIER_0 = [exports.sanctuaryV1, exports.sanctuaryV2, exports.sanctuaryV3, exports.sanctuaryV4]
 exports.testTanks.UPGRADES_TIER_0 = [
     exports.repeatGunsTest,
     exports.repeatGunsTest2,

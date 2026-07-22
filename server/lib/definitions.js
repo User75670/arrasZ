@@ -8403,6 +8403,21 @@ exports.centaur.UPGRADES_TIER_0 = [exports.centaurTracker, exports.centaurByte, 
 
 exports.sanctuaryCruiserTurret = makeSwarmSpawner(combineStats([g.swarm, g.fast, g.fast, g.fast]), true);
 
+// for sanctuary v3 and v4
+exports.minigunTurret = {
+    PARENT: [exports.mini],
+    BODY: {
+        FOV: 2,
+    },
+    CONTROLLERS: ['nearestDifferentMaster'], 
+    COLOR: 16,
+    HAS_NO_RECOIL: true,
+    AI: {
+        NO_LEAD: true,
+        SKYNET: true,
+        FULL_VIEW: true,
+    },
+}
 exports.sanctuaryV1 = {
     PARENT: [exports.genericTank],
     LABEL: "Sanctuary",
@@ -8520,10 +8535,14 @@ exports.sanctuaryV3 = {
             POSITION: [  25,     0,      0,      0,     360,  0], 
             TYPE: [exports.dominationBody]
         },
-        ...repeatTurrets(3,         {
-            POSITION: [6, 6, 0, 0, 360, 1],
+        ...repeatTurrets(2,         {
+            POSITION: [6, 8, 0, 0, 360, 1],
             TYPE: [exports.sanctuaryCruiserTurret]
-        }, {angleMod: 360 / 3})
+        }, {angleMod: 360 / 2}),
+        {
+            POSITION: [8,0, 0, 0, 360, 1],
+            TYPE: [exports.minigunTurret]
+        }
     ]
 }
 exports.sanctuaryV4 = {
@@ -8561,10 +8580,15 @@ exports.sanctuaryV4 = {
             POSITION: [  25,     0,      0,      0,     360,  0], 
             TYPE: [exports.dominationBody]
         },
-        ...repeatTurrets(4,         {
+        ...repeatTurrets(2,{
             POSITION: [6, 6, 0, 0, 360, 1],
             TYPE: [exports.sanctuaryCruiserTurret]
-        }, {angleMod: 360 / 4})
+        }, {angleMod: 360 / 2}),
+        ...repeatTurrets(2,
+            {
+                POSITION: [6, 6, 0, 90, 360, 1], 
+                TYPE: [exports.minigunTurret]
+            }, {angleMod: 360 / 2})
     ]
 }
 exports.teratrapper = {

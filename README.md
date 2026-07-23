@@ -1,6 +1,6 @@
 # Arras756
 * Unofficial arras.io private server. (fork of the original arras template)
-* Link: https://arras756.netlify.app.
+* Link: https://arras756.surge.sh.
 * If you want to fork and want permissions to be functional, create an .env file and add these:
 ```
     BANNED_IPS=[]

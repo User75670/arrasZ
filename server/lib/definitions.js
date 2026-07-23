@@ -5694,7 +5694,7 @@ exports.minion2 = {
         {         /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
             POSITION: [   6,     12,    1.2,     8,      0,     180,     0,   ], 
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.drone, g.over, g.minion]),
+                SHOOT_SETTINGS: combineStats([g.drone, g.over]),
                 WAIT_TO_CYCLE: true,
                 MAX_CHILDREN: 1,
                 TYPE: exports.drone,
@@ -5702,19 +5702,14 @@ exports.minion2 = {
 
             }, 
         },
-        {         /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-            POSITION: [   7,    7.5,    0.6,     7,      0,      0,      0,   ], 
-            PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.trap, g.minion, g.halfreload]),
-                STAT_CALCULATOR: gunCalcNames.trap,
-                TYPE: exports.trap
-            }, 
-        },
-        {
-            // POSITION: [  15,     7,      1,      0,      0,      0,      0,   ],
-            POSITION: [   3,     7,     1.7,    15,      0,      0,      0,   ], 
-
-        }
+    {POSITION: [  15,     7,      1,      0,      0,      0,      0,   ],}, 
+                {
+                    POSITION: [   3,     7,     1.7,    15,      0,      0,      0,   ], 
+                    PROPERTIES: {
+                        SHOOT_SETTINGS: combineStats([g.trap]),
+                        TYPE: exports.trap, 
+                        STAT_CALCULATOR: gunCalcNames.trap,
+                    }, }
     ]
 };
 exports.minionspam = {

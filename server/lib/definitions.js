@@ -8606,6 +8606,33 @@ exports.teratrapper = {
         }
     ]
 }
+exports.zombieRamBase = {
+    PARENT: [exports.genericTank],
+    LABEL: 'Zombie',
+    COLOR: 41,
+    CONTROLLERS: ['nearestDifferentMaster', 'mapAltToFire', 'ram']
+}
+exports.zombieBase = {
+    PARENT: [exports.genericTank],
+    LABEL: 'Zombie',
+    COLOR: 41,
+    CONTROLLERS: ['nearestDifferentMaster', 'mapAltToFire', 'minion']
+}
+exports.zombie = {
+    PARENT: [exports.zombieRamBase],
+    DANGER: 6,
+    SKILL: skillSet({hlt: 0.8, shi: 0.3, atk: 0.4, mob: 0.2}),
+    GUNS: repeatGuns(2, {POSITION: [20, 6, 0, 0, 7, 0, 0]}, {yMod: -14})
+}
+exports.babyzombie = {
+    PARENT: [exports.zombieRamBase],
+    DANGER: 6,
+    LABEL: 'Baby Zombie',
+    SIZE: base.SIZE * 0.8,
+    SKILL: skillSet({hlt: 0.2, shi: 0.1, atk: 0.7, mob: 1}),
+    BODY: {SPEED: base.SPEED * 2},
+    GUNS: repeatGuns(2, {POSITION: [18, 5, 0, 0, 7, 0, 0]}, {yMod: -14})
+}
 exports.bossesMenu = {
     PARENT: [exports.menu],
     LABEL: 'Bosses'
@@ -8751,6 +8778,11 @@ exports.arrasMenu = {
 exports.permsMenu = {
     PARENT: [exports.menu],
     LABEL: 'Permissions Menu'
+}
+exports.zombiedefense = {
+    PARENT: [exports.menu],
+    LABEL: 'Zombie Defense (Beta)',
+    COLOR: 41
 }
 // generator upgrades
 // should've made some function to make upgrades easily but too hard
@@ -8954,6 +8986,11 @@ exports.painterXXL.UPGRADES_TIER_0 = [exports.painterS, exports.painterXS, expor
 
 exports.arrasMenu.UPGRADES_TIER_0 = [exports.tracker3, exports.tetraGunner, exports.worstTank, exports.dreadnought];
 
+exports.zombiedefense.UPGRADES_TIER_0 = [
+    exports.sanctuaries,
+    exports.zombie,
+    exports.babyzombie
+]
 exports.tanks.UPGRADES_TIER_0 = [
     exports.basic,
     exports.bossesMenu,
@@ -8961,7 +8998,8 @@ exports.tanks.UPGRADES_TIER_0 = [
     exports.funTanks,
     exports.testTanks,
     exports.betatanks,
-    exports.arrasMenu
+    exports.arrasMenu,
+    exports.zombiedefense
 ]
 exports.permsMenu.UPGRADES_TIER_0 = [
     exports.developer,

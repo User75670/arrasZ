@@ -3273,6 +3273,7 @@ const sockets = (() => {
                                         entities.forEach(e => {
                                             if (e.isFood) {e.kill();};
                                         });
+                                        break;
                                     }
                                     case 'kill': {
                                         const range = 1.5;

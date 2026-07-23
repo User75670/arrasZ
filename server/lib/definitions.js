@@ -8420,6 +8420,7 @@ exports.sanctuaryV1 = {
     SIZE: 30,
     LEVEL: 45,
     FACING_TYPE: 'autospin',
+    SPIN_SPEED: 1.25,
     ACCEPTS_SCORE: false,
     HAS_NO_RECOIL: true,
     SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
@@ -8463,6 +8464,7 @@ exports.sanctuaryV2 = {
     FACING_TYPE: 'autospin',
     ACCEPTS_SCORE: false,
     HAS_NO_RECOIL: true,
+    SPIN_SPEED: 1.25,
     SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
     BODY: {
         HEALTH: base.HEALTH * 15,
@@ -8504,6 +8506,7 @@ exports.sanctuaryV3 = {
     FACING_TYPE: 'autospin',
     ACCEPTS_SCORE: false,
     HAS_NO_RECOIL: true,
+    SPIN_SPEED: 1.25,
     SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
     BODY: {
         HEALTH: base.HEALTH * 20,
@@ -8550,6 +8553,7 @@ exports.sanctuaryV4 = {
     ACCEPTS_SCORE: false,
     HAS_NO_RECOIL: true,
     SKILL: [9, 9, 9, 9, 0, 0, 0, 0, 0, 0],
+    SPIN_SPEED: 1.25,
     BODY: {
         HEALTH: base.HEALTH * 25,
         DAMAGE: base.DAMAGE * 3,
